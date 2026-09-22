@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Button from '../components/ui/Button.astro';
+import { getPageMeta } from '../data/pages-meta';
+import { caeFaq } from '../data/content';
+import '../styles/prose.css';
+---
+
+<BaseLayout title={getPageMeta('/que-es-un-cae').title} description={getPageMeta('/que-es-un-cae').description}>
+  <PageHeader
+    title="Qué es un CAE"
+    subtitle="Certificado de Ahorro Energético — guía para empresas y propietarios"
+  />
+  <section class="section">
+    <div class="container prose">
+      <p>
+        Un <strong>Certificado de Ahorro Energético (CAE)</strong> es un instrumento que acredita el ahorro de
+        energía conseguido tras una actuación de eficiencia energética. En España, los CAE pueden
+        comercializarse en un mercado regulado, lo que permite <strong>monetizar el ahorro energético</strong>
+        generado por reformas, rehabilitaciones o mejoras en instalaciones.
+      </p>
+
+      <h2>¿Cómo se genera un CAE?</h2>
+      <p>El proceso habitual incluye:</p>
+      <ul>
+        <li>Ejecución de una actuación de eficiencia energética acogida a ficha normalizada</li>
+        <li>Verificación del ahorro por un verificador acreditado</li>
+        <li>Registro y emisión del certificado</li>
+        <li>Comercialización en el mercado de CAEs, si el titular decide venderlo</li>
+      </ul>
+
+      <h2>¿Quién se beneficia?</h2>
+      <p>
+        Propietarios, comunidades, empresas de construcción y sus clientes finales pueden beneficiarse. Las
+        empresas técnicas que ejecutan la obra pueden integrar la gestión de CAEs como servicio de valor
+        añadido, delegando la tramitación en un partner especializado como Soluciones Energéticas.
+      </p>
+
+      <h2>Relación con rehabilitación y construcción</h2>
+      <p>
+        Actuaciones como SATE, sustitución de ventanas, mejora de cubiertas o rehabilitación integral pueden
+        generar CAEs si cumplen los requisitos técnicos. Por eso cada vez más clientes preguntan a sus
+        constructores o rehabilitadores sobre esta posibilidad.
+      </p>
+
+      <dl class="faq-list">
+        {
+          caeFaq.map((item) => (
+            <div class="faq-item">
+              <dt>{item.question}</dt>
+              <dd>{item.answer}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="cae-cta">
+        <Button href="/contacto" variant="primary">Consultar sobre CAEs</Button>
+        <Button href="/servicios#cae" variant="outline">Servicio de gestión CAE</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .faq-list {
+    margin: 1.5rem 0;
+  }
+
+  .faq-item {
+    margin-bottom: 1.25rem;
+  }
+
+  .faq-item dt {
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: 0.375rem;
+  }
+
+  .faq-item dd {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .cae-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+</style>

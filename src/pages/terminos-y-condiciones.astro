@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import { getPageMeta } from '../data/pages-meta';
+import { company, site } from '../data/site';
+import '../styles/prose.css';
+---
+
+<BaseLayout
+  title={getPageMeta('/terminos-y-condiciones').title}
+  description={getPageMeta('/terminos-y-condiciones').description}
+>
+  <PageHeader title="Términos y condiciones" />
+  <section class="section">
+    <div class="container prose">
+      <p><strong>Titular:</strong> {company.legalName}</p>
+      <p><strong>Sitio web:</strong> {site.url}</p>
+      <p>
+        El acceso y uso de este sitio implica la aceptación de estos términos. El contenido tiene carácter
+        informativo y no constituye asesoramiento jurídico o técnico vinculante.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

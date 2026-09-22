@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import { getPageMeta } from '../data/pages-meta';
+import { company } from '../data/site';
+import '../styles/prose.css';
+---
+
+<BaseLayout
+  title={getPageMeta('/politica-de-privacidad').title}
+  description={getPageMeta('/politica-de-privacidad').description}
+>
+  <PageHeader title="Política de privacidad" />
+  <section class="section">
+    <div class="container prose">
+      <p><strong>Responsable:</strong> {company.legalName}</p>
+      <p><strong>Email:</strong> {company.email}</p>
+      <p>
+        Los datos enviados a través del formulario de contacto se utilizarán exclusivamente para gestionar tu
+        consulta, conforme al RGPD y la LOPDGDD.
+      </p>
+      <p>
+        Puedes ejercer tus derechos de acceso, rectificación, supresión y otros escribiendo a {company.email}.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

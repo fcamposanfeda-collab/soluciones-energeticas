@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import { getPageMeta } from '../data/pages-meta';
+import { values } from '../data/content';
+---
+
+<BaseLayout title={getPageMeta('/valores').title} description={getPageMeta('/valores').description}>
+  <PageHeader title="Valores" subtitle="Enfocados en acción por el clima y energía asequible" />
+  <section class="section">
+    <div class="container values-grid">
+      {
+        values.map((value) => (
+          <article class="value-card">
+            <h2>{value.title}</h2>
+            <p>{value.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .values-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .value-card {
+    padding: 1.5rem;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .value-card h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+    color: var(--color-primary-dark);
+  }
+
+  .value-card p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  @media (min-width: 768px) {
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

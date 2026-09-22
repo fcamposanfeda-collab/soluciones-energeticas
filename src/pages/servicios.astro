@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import Button from '../components/ui/Button.astro';
+import { getPageMeta } from '../data/pages-meta';
+import { services } from '../data/services';
+---
+
+<BaseLayout title={getPageMeta('/servicios').title} description={getPageMeta('/servicios').description}>
+  <PageHeader
+    title="Servicios"
+    subtitle="Gestionamos y compramos soluciones energéticas y climáticas"
+  />
+  <section class="section">
+    <div class="container services-page">
+      {
+        services.map((service) => (
+          <article id={service.id === 'carbon' ? 'bonos-carbono' : service.id === 'water' ? 'huella-hidrica' : service.id === 'hydrogen' ? 'hidrogeno-verde' : service.id} class="service-block">
+            <h2>{service.title}</h2>
+            <p>{service.description}</p>
+            <p>
+              Contacta con nosotros para evaluar tu caso, estimar el potencial de certificación y definir el
+              proceso de gestión o compra.
+            </p>
+          </article>
+        ))
+      }
+      <div class="services-page__cta">
+        <Button href="/contacto" variant="primary">Solicitar información</Button>
+        <Button href="/que-es-un-cae" variant="outline">Qué es un CAE</Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .services-page {
+    max-width: 48rem;
+  }
+
+  .service-block {
+    padding-bottom: 2.5rem;
+    margin-bottom: 2.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .service-block:last-of-type {
+    border-bottom: none;
+  }
+
+  .service-block h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.375rem;
+    color: var(--color-secondary);
+  }
+
+  .service-block p {
+    margin: 0 0 1rem;
+    line-height: 1.75;
+    color: var(--color-muted);
+  }
+
+  .services-page__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+</style>

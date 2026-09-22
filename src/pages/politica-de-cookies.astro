@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import { getPageMeta } from '../data/pages-meta';
+import '../styles/prose.css';
+---
+
+<BaseLayout
+  title={getPageMeta('/politica-de-cookies').title}
+  description={getPageMeta('/politica-de-cookies').description}
+>
+  <PageHeader title="Política de cookies" />
+  <section class="section">
+    <div class="container prose">
+      <p>Este sitio utiliza cookies técnicas necesarias para su funcionamiento.</p>
+      <p>
+        Con tu consentimiento, podremos utilizar cookies analíticas para mejorar la experiencia de usuario.
+        Puedes aceptar o rechazar desde el banner de cookies.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

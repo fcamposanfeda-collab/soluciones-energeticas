@@ -1,0 +1,184 @@
+---
+import { mainNav } from '../../data/navigation';
+import { site, contact } from '../../data/site';
+import { isActiveNav } from '../../utils/nav';
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="site-header__brand" aria-label={`${site.name} — Inicio`}>
+      <span class="site-header__logo-mark" aria-hidden="true"></span>
+      <span class="site-header__logo-text">{site.name}</span>
+    </a>
+
+    <button
+      type="button"
+      class="site-header__toggle"
+      aria-expanded="false"
+      aria-controls="main-navigation"
+      aria-label="Abrir menú"
+      data-nav-toggle
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav id="main-navigation" class="site-header__nav" aria-label="Navegación principal" data-nav-menu>
+      <ul class="site-header__list">
+        {
+          mainNav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={['site-header__link', { 'is-active': isActiveNav(item.href, currentPath) }]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a href={`tel:${contact.phone}`} class="site-header__phone">{contact.phoneDisplay}</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-nav-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-nav-menu]');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    menu?.classList.toggle('is-open', !isOpen);
+    document.body.classList.toggle('nav-open', !isOpen);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu?.classList.contains('is-open')) {
+      toggle?.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open');
+      document.body.classList.remove('nav-open');
+    }
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    height: var(--header-height);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+    gap: 1rem;
+  }
+
+  .site-header__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    color: var(--color-secondary);
+  }
+
+  .site-header__logo-mark {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.375rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  }
+
+  .site-header__toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+  }
+
+  .site-header__toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+  }
+
+  .site-header__nav {
+    display: none;
+  }
+
+  .site-header__list {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .site-header__link {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--color-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .site-header__link:hover,
+  .site-header__link.is-active {
+    color: var(--color-primary);
+  }
+
+  .site-header__phone {
+    margin-left: 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 992px) {
+    .site-header__toggle {
+      display: none;
+    }
+
+    .site-header__nav {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .site-header__nav.is-open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    .site-header__list {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .site-header__phone {
+      margin: 1rem 0 0;
+    }
+  }
+
+  :global(body.nav-open) {
+    overflow: hidden;
+  }
+</style>

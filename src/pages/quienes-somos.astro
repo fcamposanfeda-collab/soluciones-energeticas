@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import { getPageMeta } from '../data/pages-meta';
+import '../styles/prose.css';
+---
+
+<BaseLayout title={getPageMeta('/quienes-somos').title} description={getPageMeta('/quienes-somos').description}>
+  <PageHeader
+    title="Quiénes somos"
+    subtitle="Soluciones Energéticas Reunidas — expertos en CAEs y soluciones climáticas"
+  />
+  <section class="section">
+    <div class="container prose">
+      <p>
+        En <strong>Soluciones Energéticas</strong> nos especializamos en la gestión, verificación y compra de
+        <strong>Certificados de Ahorro Energético (CAE)</strong>, así como en bonos de carbono, huella hídrica e
+        hidrógeno verde.
+      </p>
+      <p>
+        Trabajamos como partner de empresas de construcción, ingeniería y eficiencia energética que necesitan
+        apoyo administrativo y técnico para responder a las demandas de sus clientes sobre ahorro energético y
+        monetización de actuaciones.
+      </p>
+      <h2>Nuestra misión</h2>
+      <p>
+        Facilitar la transición energética mediante procesos ágiles, transparentes y alineados con la normativa
+        española y europea, permitiendo que nuestros partners se centren en la calidad de su servicio en obra.
+      </p>
+      <h2>¿A quién ayudamos?</h2>
+      <ul>
+        <li>Empresas de rehabilitación y reformas integrales</li>
+        <li>Gestores de eficiencia energética y consultoras técnicas</li>
+        <li>Comunidades de propietarios y promotores</li>
+        <li>Industrias con proyectos de reducción de emisiones o huella hídrica</li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

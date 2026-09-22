@@ -1,0 +1,119 @@
+---
+import { site, contact } from '../../data/site';
+import { footerNav, legalNav } from '../../data/navigation';
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div class="footer__brand">
+      <p class="footer__name">{site.name}</p>
+      <p class="footer__tagline">{site.tagline}</p>
+      <p class="footer__claim">Enfocados en acción por el clima y energía asequible</p>
+    </div>
+
+    <div class="footer__col">
+      <h2 class="footer__title">Contacto</h2>
+      <p><a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a></p>
+      <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+    </div>
+
+    <div class="footer__col">
+      <h2 class="footer__title">Enlaces</h2>
+      <ul>
+        {footerNav.map((link) => (
+          <li><a href={link.href}>{link.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__legal container">
+    <p>{site.copyright}</p>
+    <ul class="footer__legal-links">
+      {legalNav.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-footer-bg);
+    color: var(--color-on-primary);
+    padding-top: 3rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer__name {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .footer__tagline,
+  .footer__claim {
+    margin: 0 0 0.375rem;
+    font-size: 0.9375rem;
+    opacity: 0.9;
+    line-height: 1.6;
+  }
+
+  .footer__title {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-on-primary);
+  }
+
+  .footer__col ul {
+    display: grid;
+    gap: 0.375rem;
+  }
+
+  .footer__col a {
+    font-size: 0.9375rem;
+    opacity: 0.9;
+  }
+
+  .footer__col a:hover {
+    opacity: 1;
+    text-decoration: underline;
+  }
+
+  .footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.8125rem;
+    opacity: 0.85;
+  }
+
+  .footer__legal p {
+    margin: 0;
+  }
+
+  .footer__legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1.5fr 1fr 1fr;
+    }
+  }
+</style>

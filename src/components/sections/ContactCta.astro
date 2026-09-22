@@ -1,0 +1,72 @@
+---
+import Button from '../ui/Button.astro';
+import ContactForm from '../forms/ContactForm.astro';
+import { contact } from '../../data/site';
+---
+
+<section class="contact-cta section" aria-labelledby="contact-cta-title">
+  <div class="container contact-cta__grid">
+    <div class="contact-cta__info">
+      <h2 id="contact-cta-title">Contacto</h2>
+      <p class="contact-cta__lead">Enfocados en acción por el clima y energía asequible</p>
+      <div class="contact-cta__details">
+        <p><strong>Email</strong><br /><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+        <p><strong>Llámanos</strong><br /><a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a></p>
+      </div>
+      <Button href="/contacto" variant="outline">Página de contacto</Button>
+    </div>
+    <div class="contact-cta__form">
+      <ContactForm formId="home-contact" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cta {
+    background: var(--color-secondary);
+    color: var(--color-on-primary);
+  }
+
+  .contact-cta__grid {
+    display: grid;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .contact-cta h2 {
+    margin: 0 0 0.5rem;
+    color: var(--color-on-primary);
+    font-size: 1.75rem;
+  }
+
+  .contact-cta__lead {
+    margin: 0 0 1.5rem;
+    opacity: 0.9;
+  }
+
+  .contact-cta__details {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-cta__details p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+  }
+
+  .contact-cta__details a {
+    color: var(--color-accent);
+  }
+
+  .contact-cta__form {
+    padding: 1.75rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border-radius: 0.5rem;
+  }
+
+  @media (min-width: 992px) {
+    .contact-cta__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

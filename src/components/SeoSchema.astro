@@ -1,0 +1,37 @@
+---
+import { site, contact, company } from '../data/site';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      inLanguage: site.lang,
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${site.url}/#organization`,
+      name: site.name,
+      legalName: company.legalName,
+      url: site.url,
+      email: contact.email,
+      telephone: contact.phone,
+      description: site.description,
+      areaServed: { '@type': 'Country', name: 'España' },
+      knowsAbout: [
+        'Certificados de Ahorro Energético',
+        'CAE',
+        'Bonos de carbono',
+        'Huella hídrica',
+        'Hidrógeno verde',
+        'Eficiencia energética',
+      ],
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

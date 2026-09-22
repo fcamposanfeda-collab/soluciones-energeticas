@@ -1,0 +1,22 @@
+:root {
+  --color-text: #0f172a;
+  --color-primary: #0f766e;
+  --color-primary-dark: #115e59;
+  --color-secondary: #134e4a;
+  --color-accent: #34d399;
+  --color-bg: #ffffff;
+  --color-bg-muted: #f0fdfa;
+  --color-on-primary: #ffffff;
+  --color-border: #ccfbf1;
+  --color-muted: #64748b;
+  --color-footer-bg: #134e4a;
+
+  --font-primary: 'Inter', system-ui, sans-serif;
+  --font-heading: 'DM Sans', system-ui, sans-serif;
+
+  --container-max: 1140px;
+  --section-padding-mobile: 2.5rem;
+  --section-padding-desktop: 4rem;
+  --header-height: 4.5rem;
+  --transition-fast: 150ms ease;
+}
