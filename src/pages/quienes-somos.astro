@@ -1,39 +1,114 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
+import Button from '../components/ui/Button.astro';
 import { getPageMeta } from '../data/pages-meta';
+import { whyUs } from '../data/content';
 import '../styles/prose.css';
 ---
 
 <BaseLayout title={getPageMeta('/quienes-somos').title} description={getPageMeta('/quienes-somos').description}>
   <PageHeader
     title="Quiénes somos"
-    subtitle="Soluciones Energéticas Reunidas — expertos en CAEs y soluciones climáticas"
+    subtitle="Especialistas en monetizar el ahorro energético y acompañar la transición climática"
   />
   <section class="section">
     <div class="container prose">
       <p>
-        En <strong>Soluciones Energéticas</strong> nos especializamos en la gestión, verificación y compra de
-        <strong>Certificados de Ahorro Energético (CAE)</strong>, así como en bonos de carbono, huella hídrica e
-        hidrógeno verde.
+        En <strong>Soluciones Energéticas Reunidas</strong> nos dedicamos a la gestión, verificación y
+        <strong>compra de Certificados de Ahorro Energético (CAE)</strong>, así como a bonos de carbono,
+        huella hídrica e hidrógeno verde.
       </p>
       <p>
-        Trabajamos como partner de empresas de construcción, ingeniería y eficiencia energética que necesitan
-        apoyo administrativo y técnico para responder a las demandas de sus clientes sobre ahorro energético y
-        monetización de actuaciones.
+        Actuamos como <strong>partner B2B</strong> de empresas de construcción, ingeniería, instalación y
+        eficiencia energética: cuando vuestros clientes preguntan por CAEs, nosotros asumimos la parte
+        administrativa y de mercado para que vosotros no desviéis recursos de la obra.
       </p>
       <h2>Nuestra misión</h2>
       <p>
-        Facilitar la transición energética mediante procesos ágiles, transparentes y alineados con la normativa
-        española y europea, permitiendo que nuestros partners se centren en la calidad de su servicio en obra.
+        Facilitar que el ahorro energético se traduzca en valor económico real, con procesos ágiles,
+        transparentes y alineados con la normativa española. Queremos que más actuaciones de eficiencia se
+        documenten, verifiquen y monetizan — beneficiando a propietarios, empresas técnicas y al clima.
       </p>
       <h2>¿A quién ayudamos?</h2>
       <ul>
-        <li>Empresas de rehabilitación y reformas integrales</li>
-        <li>Gestores de eficiencia energética y consultoras técnicas</li>
-        <li>Comunidades de propietarios y promotores</li>
-        <li>Industrias con proyectos de reducción de emisiones o huella hídrica</li>
+        <li>Empresas de rehabilitación, reformas y construcción</li>
+        <li>Instaladores y contratistas de eficiencia energética</li>
+        <li>Ingenierías, consultoras técnicas y gestores energéticos</li>
+        <li>Comunidades de propietarios, promotores e industria</li>
       </ul>
     </div>
   </section>
+
+  <section class="section section--muted">
+    <div class="container">
+      <h2 class="why-title">Cómo trabajamos</h2>
+      <div class="why-grid">
+        {
+          whyUs.map((item) => (
+            <article class="why-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="why-cta">
+        <Button href="/contacto" variant="primary">Contactar</Button>
+        <Button href="/que-es-un-cae" variant="outline">Qué es un CAE</Button>
+      </div>
+    </div>
+  </section>
 </BaseLayout>
+
+<style>
+  .section--muted {
+    background: var(--color-bg-muted);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .why-title {
+    margin: 0 0 1.5rem;
+    text-align: center;
+    color: var(--color-secondary);
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+  }
+
+  .why-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .why-card {
+    padding: 1.35rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .why-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .why-card p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .why-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

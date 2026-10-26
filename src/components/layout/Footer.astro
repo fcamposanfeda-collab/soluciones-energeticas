@@ -6,7 +6,17 @@ import { footerNav, legalNav } from '../../data/navigation';
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <p class="footer__name">{site.name}</p>
+      <div class="footer__logo-wrap">
+        <img
+          class="footer__logo"
+          src="/logo-soluciones-energeticas.png"
+          alt={site.legalName}
+          width="200"
+          height="168"
+          decoding="async"
+          loading="lazy"
+        />
+      </div>
       <p class="footer__tagline">{site.tagline}</p>
       <p class="footer__claim">Enfocados en acción por el clima y energía asequible</p>
     </div>
@@ -50,11 +60,18 @@ import { footerNav, legalNav } from '../../data/navigation';
     padding-bottom: 2rem;
   }
 
-  .footer__name {
-    margin: 0 0 0.5rem;
-    font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
+  .footer__logo-wrap {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    padding: 0.65rem 0.85rem;
+    background: #fff;
+    border-radius: 0.5rem;
+  }
+
+  .footer__logo {
+    height: 4.5rem;
+    width: auto;
+    object-fit: contain;
   }
 
   .footer__tagline,

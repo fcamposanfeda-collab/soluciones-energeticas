@@ -7,14 +7,24 @@ import { contact } from '../data/site';
 ---
 
 <BaseLayout title={getPageMeta('/contacto').title} description={getPageMeta('/contacto').description}>
-  <PageHeader title="Contacto" subtitle="Consulta sobre CAEs, bonos de carbono y soluciones energéticas" />
+  <PageHeader
+    title="Contacto"
+    subtitle="Cuéntanos tu actuación de eficiencia energética y valoramos el potencial de CAEs"
+  />
   <section class="section contact-page">
     <div class="container contact-page__grid">
       <aside class="contact-page__info">
         <h2>Hablemos</h2>
-        <p>Escríbenos tu consulta o llámanos directamente.</p>
+        <p>
+          Indica tipo de actuación, ubicación aproximada y si el proyecto está previsto o ya ejecutado.
+          Te orientamos sobre documentación, verificación y monetización del ahorro.
+        </p>
         <p><strong>Email</strong><br /><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
         <p><strong>Teléfono</strong><br /><a href={`tel:${contact.phone}`}>{contact.phoneDisplay}</a></p>
+        <p class="contact-page__hint">
+          También trabajamos como partner de constructoras e instaladores que quieren ofrecer CAEs a sus
+          clientes sin asumir la gestión administrativa.
+        </p>
       </aside>
       <div class="contact-page__form">
         <ContactForm formId="contact-page" />
@@ -44,6 +54,13 @@ import { contact } from '../data/site';
   .contact-page__info a {
     color: var(--color-primary);
     font-weight: 500;
+  }
+
+  .contact-page__hint {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+    font-size: 0.9375rem;
   }
 
   .contact-page__form {

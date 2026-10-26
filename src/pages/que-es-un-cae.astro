@@ -3,47 +3,153 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/ui/PageHeader.astro';
 import Button from '../components/ui/Button.astro';
 import { getPageMeta } from '../data/pages-meta';
-import { caeFaq } from '../data/content';
+import {
+  caeFaq,
+  caeBenefits,
+  caeWhoCan,
+  caeActuationTypes,
+  caeAgents,
+  caeProcess,
+  whyUs,
+} from '../data/content';
 import '../styles/prose.css';
 ---
 
 <BaseLayout title={getPageMeta('/que-es-un-cae').title} description={getPageMeta('/que-es-un-cae').description}>
   <PageHeader
     title="Qué es un CAE"
-    subtitle="Certificado de Ahorro Energético — guía para empresas y propietarios"
+    subtitle="Monetizamos tu ahorro energético — guía clara del Certificado de Ahorro Energético"
   />
+
   <section class="section">
     <div class="container prose">
       <p>
-        Un <strong>Certificado de Ahorro Energético (CAE)</strong> es un instrumento que acredita el ahorro de
-        energía conseguido tras una actuación de eficiencia energética. En España, los CAE pueden
-        comercializarse en un mercado regulado, lo que permite <strong>monetizar el ahorro energético</strong>
-        generado por reformas, rehabilitaciones o mejoras en instalaciones.
+        Un <strong>Certificado de Ahorro Energético (CAE)</strong> es un documento electrónico emitido en el
+        marco del sistema español de eficiencia energética. Acredita el ahorro de consumo de energía final
+        anual conseguido gracias a una actuación de eficiencia energética. Los CAEs pueden comprarse y
+        venderse; su valor se define en el mercado.
       </p>
-
-      <h2>¿Cómo se genera un CAE?</h2>
-      <p>El proceso habitual incluye:</p>
-      <ul>
-        <li>Ejecución de una actuación de eficiencia energética acogida a ficha normalizada</li>
-        <li>Verificación del ahorro por un verificador acreditado</li>
-        <li>Registro y emisión del certificado</li>
-        <li>Comercialización en el mercado de CAEs, si el titular decide venderlo</li>
-      </ul>
-
-      <h2>¿Quién se beneficia?</h2>
+      <p class="highlight">
+        <strong>1 CAE = 1 kWh</strong> de ahorro energético final anual.
+      </p>
       <p>
-        Propietarios, comunidades, empresas de construcción y sus clientes finales pueden beneficiarse. Las
-        empresas técnicas que ejecutan la obra pueden integrar la gestión de CAEs como servicio de valor
-        añadido, delegando la tramitación en un partner especializado como Soluciones Energéticas.
+        En <strong>Soluciones Energéticas</strong> te ayudamos a valorar si tu actuación genera CAEs,
+        gestionamos la verificación y los trámites, y <strong>compramos el ahorro certificado</strong> para
+        que recuperes parte de la inversión — ya seas propietario, comunidad, industria o empresa técnica
+        (constructora, instalador, ingeniería).
       </p>
+    </div>
+  </section>
 
-      <h2>Relación con rehabilitación y construcción</h2>
-      <p>
-        Actuaciones como SATE, sustitución de ventanas, mejora de cubiertas o rehabilitación integral pueden
-        generar CAEs si cumplen los requisitos técnicos. Por eso cada vez más clientes preguntan a sus
-        constructores o rehabilitadores sobre esta posibilidad.
-      </p>
+  <section class="section section--muted" aria-labelledby="benefits-title">
+    <div class="container">
+      <header class="block-header">
+        <h2 id="benefits-title">Objetivos y beneficios de los CAEs</h2>
+        <p>Más allá del ahorro en la factura: retorno económico, competitividad e impacto climático.</p>
+      </header>
+      <div class="card-grid">
+        {
+          caeBenefits.map((item) => (
+            <article class="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
+  <section class="section" aria-labelledby="who-title">
+    <div class="container two-col">
+      <div>
+        <h2 id="who-title">¿Quién puede obtener CAEs?</h2>
+        <p class="lead">
+          Prácticamente todos los sectores de usuarios finales pueden generar ahorros certificables, con las
+          exclusiones que marca la normativa (por ejemplo, ciertos ámbitos marítimos o de transformación de
+          energía).
+        </p>
+        <ul class="check-list">
+          {caeWhoCan.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <h2>¿Qué tipo de actuación da derecho a un CAE?</h2>
+        {
+          caeActuationTypes.map((item) => (
+            <article class="type-block">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--muted" aria-labelledby="agents-title">
+    <div class="container">
+      <header class="block-header">
+        <h2 id="agents-title">Agentes del sistema CAE</h2>
+        <p>Conocer el mapa de roles ayuda a entender quién paga, quién verifica y quién se beneficia.</p>
+      </header>
+      <div class="card-grid card-grid--3">
+        {
+          caeAgents.map((agent) => (
+            <article class="info-card">
+              <h3>{agent.title}</h3>
+              <p>{agent.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="process-title">
+    <div class="container">
+      <header class="block-header">
+        <h2 id="process-title">Cómo lo gestionamos contigo</h2>
+        <p>Un proceso sencillo, de la idea al cobro del ahorro.</p>
+      </header>
+      <ol class="process-list">
+        {
+          caeProcess.map((item) => (
+            <li class="process-item">
+              <span class="process-item__step" aria-hidden="true">{item.step}</span>
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--muted" aria-labelledby="why-title">
+    <div class="container">
+      <header class="block-header">
+        <h2 id="why-title">¿Por qué gestionar los CAEs con nosotros?</h2>
+        <p>Partner especializado para que el ahorro energético también se convierta en valor económico.</p>
+      </header>
+      <div class="card-grid">
+        {
+          whyUs.map((item) => (
+            <article class="info-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="container prose">
+      <h2 id="faq-title">Preguntas frecuentes</h2>
       <dl class="faq-list">
         {
           caeFaq.map((item) => (
@@ -54,9 +160,18 @@ import '../styles/prose.css';
           ))
         }
       </dl>
-
+      <p class="faq-note">
+        Para información oficial del marco normativo, consulta también los recursos del
+        <a
+          href="https://www.miteco.gob.es/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Ministerio para la Transición Ecológica y el Reto Demográfico
+        </a>.
+      </p>
       <div class="cae-cta">
-        <Button href="/contacto" variant="primary">Consultar sobre CAEs</Button>
+        <Button href="/contacto" variant="primary">Consultar mi actuación</Button>
         <Button href="/servicios#cae" variant="outline">Servicio de gestión CAE</Button>
       </div>
     </div>
@@ -64,6 +179,151 @@ import '../styles/prose.css';
 </BaseLayout>
 
 <style>
+  .section--muted {
+    background: var(--color-bg-muted);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .highlight {
+    padding: 1rem 1.25rem;
+    background: var(--color-bg-muted);
+    border-left: 4px solid var(--color-primary);
+    border-radius: 0 0.375rem 0.375rem 0;
+  }
+
+  .block-header {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+  }
+
+  .block-header h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+    color: var(--color-secondary);
+  }
+
+  .block-header p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .card-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    padding: 1.35rem;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .section--muted .info-card {
+    background: var(--color-bg);
+  }
+
+  .section:not(.section--muted) .info-card {
+    background: var(--color-bg-muted);
+  }
+
+  .info-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .info-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .two-col {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .two-col h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.375rem;
+    color: var(--color-secondary);
+  }
+
+  .lead {
+    margin: 0 0 1rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .check-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--color-text);
+    line-height: 1.7;
+  }
+
+  .check-list li {
+    margin-bottom: 0.5rem;
+  }
+
+  .type-block {
+    margin-bottom: 1.25rem;
+  }
+
+  .type-block h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .type-block p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .process-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.25rem;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .process-item__step {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .process-item h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .process-item p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
   .faq-list {
     margin: 1.5rem 0;
   }
@@ -84,10 +344,34 @@ import '../styles/prose.css';
     line-height: 1.65;
   }
 
+  .faq-note {
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+  }
+
   .cae-cta {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
     margin-top: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .card-grid--3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .process-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

@@ -1,17 +1,19 @@
 ---
 import Button from '../ui/Button.astro';
-import { partnerPitch } from '../../data/services';
+import { partnerPitch, partnerBenefits } from '../../data/services';
 ---
 
 <section class="partner section" aria-labelledby="partner-title">
   <div class="container partner__inner">
-    <h2 id="partner-title">Partner para empresas de construcción y eficiencia energética</h2>
+    <h2 id="partner-title">Partner para constructoras, instaladores e ingenierías</h2>
     <p>{partnerPitch}</p>
-    <p>
-      Al mismo tiempo, facilitas a tus clientes la tramitación de los Certificados de Ahorro Energético,
-      mejorando su experiencia y satisfacción.
-    </p>
-    <Button href="/contacto" variant="primary">Hablemos de colaboración</Button>
+    <ul class="partner__list">
+      {partnerBenefits.map((item) => <li>{item}</li>)}
+    </ul>
+    <div class="partner__actions">
+      <Button href="/contacto" variant="primary">Hablemos de colaboración</Button>
+      <Button href="/servicios#cae" variant="outline">Ver servicio CAE</Button>
+    </div>
   </div>
 </section>
 
@@ -34,8 +36,42 @@ import { partnerPitch } from '../../data/services';
   }
 
   .partner p {
-    margin: 0 0 1rem;
+    margin: 0 0 1.25rem;
     color: var(--color-muted);
     line-height: 1.75;
+  }
+
+  .partner__list {
+    margin: 0 auto 1.75rem;
+    padding: 0;
+    list-style: none;
+    text-align: left;
+    max-width: 36rem;
+  }
+
+  .partner__list li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.65rem;
+    color: var(--color-text);
+    line-height: 1.55;
+  }
+
+  .partner__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--color-primary);
+  }
+
+  .partner__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
   }
 </style>

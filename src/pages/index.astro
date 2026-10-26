@@ -6,17 +6,21 @@ import ServicesGrid from '../components/sections/ServicesGrid.astro';
 import PartnerSection from '../components/sections/PartnerSection.astro';
 import ContactCta from '../components/sections/ContactCta.astro';
 import { services } from '../data/services';
+import { caeBenefits, caeProcess, whyUs } from '../data/content';
 
 const meta = getPageMeta('/');
+const homeBenefits = caeBenefits.slice(0, 4);
 ---
 
 <BaseLayout title={meta.title} description={meta.description}>
   <section class="hero section">
     <div class="container hero__inner">
-      <p class="hero__eyebrow">Soluciones climáticas y energéticas</p>
-      <h1 class="hero__title">
-        <span>Gestionamos y compramos</span>
-      </h1>
+      <p class="hero__eyebrow">Soluciones Energéticas Reunidas</p>
+      <h1 class="hero__title">Monetizamos tu ahorro energético</h1>
+      <p class="hero__lead">
+        Gestionamos y compramos <strong>Certificados de Ahorro Energético (CAEs)</strong> para empresas,
+        comunidades e instaladores. También trabajamos bonos de carbono, huella hídrica e hidrógeno verde.
+      </p>
       <ul class="hero__pills" aria-label="Áreas de actividad">
         {
           services.map((s) => (
@@ -24,19 +28,81 @@ const meta = getPageMeta('/');
           ))
         }
       </ul>
-      <p class="hero__lead">
-        Especialistas en CAEs, bonos de carbono, huella hídrica e hidrógeno verde. Partner B2B para
-        empresas que quieren ofrecer valor añadido a sus clientes sin cargar con la gestión administrativa.
-      </p>
       <div class="hero__actions">
-        <Button href="/contacto" variant="primary">Consulta</Button>
+        <Button href="/contacto" variant="primary">Consulta tu actuación</Button>
         <Button href="/que-es-un-cae" variant="ghost">Qué es un CAE</Button>
       </div>
     </div>
   </section>
 
+  <section class="section" aria-labelledby="home-benefits-title">
+    <div class="container">
+      <header class="home-header">
+        <h2 id="home-benefits-title">Por qué importan los CAEs</h2>
+        <p>
+          Cada mejora de eficiencia puede generar un retorno económico, reducir costes y reforzar vuestro
+          compromiso climático.
+        </p>
+      </header>
+      <div class="home-grid">
+        {
+          homeBenefits.map((item) => (
+            <article class="home-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="home-center">
+        <Button href="/que-es-un-cae" variant="outline">Guía completa sobre CAEs</Button>
+      </div>
+    </div>
+  </section>
+
   <ServicesGrid />
+
+  <section class="section section--muted" aria-labelledby="home-process-title">
+    <div class="container">
+      <header class="home-header">
+        <h2 id="home-process-title">De la actuación al cobro del ahorro</h2>
+        <p>Te acompañamos en todo el proceso, con foco en documentación, verificación y monetización.</p>
+      </header>
+      <ol class="home-process">
+        {
+          caeProcess.map((item) => (
+            <li>
+              <span aria-hidden="true">{item.step}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
   <PartnerSection />
+
+  <section class="section" aria-labelledby="home-why-title">
+    <div class="container">
+      <header class="home-header">
+        <h2 id="home-why-title">Por qué confiar en nosotros</h2>
+        <p>Partner B2B especializado: reforzamos vuestra oferta sin competir con vuestro negocio técnico.</p>
+      </header>
+      <div class="home-grid">
+        {
+          whyUs.map((item) => (
+            <article class="home-card">
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <ContactCta />
 </BaseLayout>
 
@@ -69,11 +135,23 @@ const meta = getPageMeta('/');
     color: var(--color-on-primary);
   }
 
+  .hero__lead {
+    margin: 0 0 1.5rem;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    opacity: 0.92;
+  }
+
+  .hero__lead strong {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
   .hero__pills {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 0 0 1.5rem;
+    margin: 0 0 2rem;
   }
 
   .hero__pills a {
@@ -90,16 +168,116 @@ const meta = getPageMeta('/');
     background: rgba(255, 255, 255, 0.2);
   }
 
-  .hero__lead {
-    margin: 0 0 2rem;
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    opacity: 0.92;
-  }
-
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+  }
+
+  .section--muted {
+    background: var(--color-bg-muted);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .home-header {
+    text-align: center;
+    max-width: 40rem;
+    margin: 0 auto 2rem;
+  }
+
+  .home-header h2 {
+    margin: 0 0 0.75rem;
+    color: var(--color-secondary);
+    font-size: clamp(1.375rem, 3vw, 1.75rem);
+  }
+
+  .home-header p {
+    margin: 0;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .home-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .home-card {
+    padding: 1.35rem;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .section--muted .home-card,
+  .section:not(.section--muted) .home-process li {
+    background: var(--color-bg);
+  }
+
+  .section--muted .home-process li {
+    background: var(--color-bg);
+  }
+
+  .home-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .home-card p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  .home-center {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .home-process {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .home-process li {
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+  }
+
+  .home-process span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .home-process h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
+  .home-process p {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--color-muted);
+    line-height: 1.65;
+  }
+
+  @media (min-width: 768px) {
+    .home-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-process {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>

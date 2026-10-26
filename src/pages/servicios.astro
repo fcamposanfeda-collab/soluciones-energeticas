@@ -4,24 +4,46 @@ import PageHeader from '../components/ui/PageHeader.astro';
 import Button from '../components/ui/Button.astro';
 import { getPageMeta } from '../data/pages-meta';
 import { services } from '../data/services';
+import { caeProcess } from '../data/content';
+
+function serviceAnchor(id: string) {
+  if (id === 'carbon') return 'bonos-carbono';
+  if (id === 'water') return 'huella-hidrica';
+  if (id === 'hydrogen') return 'hidrogeno-verde';
+  return id;
+}
 ---
 
 <BaseLayout title={getPageMeta('/servicios').title} description={getPageMeta('/servicios').description}>
   <PageHeader
     title="Servicios"
-    subtitle="Gestionamos y compramos soluciones energéticas y climáticas"
+    subtitle="Gestionamos y compramos CAEs y otras soluciones climáticas para empresas y partners"
   />
   <section class="section">
     <div class="container services-page">
       {
         services.map((service) => (
-          <article id={service.id === 'carbon' ? 'bonos-carbono' : service.id === 'water' ? 'huella-hidrica' : service.id === 'hydrogen' ? 'hidrogeno-verde' : service.id} class="service-block">
+          <article id={serviceAnchor(service.id)} class="service-block">
             <h2>{service.title}</h2>
             <p>{service.description}</p>
-            <p>
-              Contacta con nosotros para evaluar tu caso, estimar el potencial de certificación y definir el
-              proceso de gestión o compra.
-            </p>
+            <ul>
+              {service.details.map((detail) => (
+                <li>{detail}</li>
+              ))}
+            </ul>
+            {service.id === 'cae' && (
+              <div class="service-block__extra">
+                <h3>Proceso de gestión CAE</h3>
+                <ol>
+                  {caeProcess.map((step) => (
+                    <li>
+                      <strong>{step.title}.</strong> {step.description}
+                    </li>
+                  ))}
+                </ol>
+                <Button href="/que-es-un-cae" variant="outline">Guía: qué es un CAE</Button>
+              </div>
+            )}
           </article>
         ))
       }
@@ -54,10 +76,36 @@ import { services } from '../data/services';
     color: var(--color-secondary);
   }
 
+  .service-block h3 {
+    margin: 1.5rem 0 0.75rem;
+    font-size: 1.0625rem;
+    color: var(--color-primary-dark);
+  }
+
   .service-block p {
     margin: 0 0 1rem;
     line-height: 1.75;
     color: var(--color-muted);
+  }
+
+  .service-block ul,
+  .service-block ol {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+
+  .service-block li {
+    margin-bottom: 0.45rem;
+  }
+
+  .service-block__extra {
+    margin-top: 0.5rem;
+    padding: 1.25rem;
+    background: var(--color-bg-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
   }
 
   .services-page__cta {

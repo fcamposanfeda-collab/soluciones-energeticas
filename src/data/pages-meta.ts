@@ -1,33 +1,33 @@
 export const pagesMeta = {
   '/': {
-    title: 'Soluciones Energéticas | Gestión y compra de CAEs',
+    title: 'Soluciones Energéticas | Monetizamos tu ahorro energético (CAEs)',
     description:
-      'Gestionamos y compramos Certificados de Ahorro Energético (CAE), bonos de carbono, huella hídrica e hidrógeno verde. Partner B2B para empresas de construcción y eficiencia energética.',
+      'Gestionamos y compramos Certificados de Ahorro Energético (CAE). Partner de constructoras, instaladores e ingenierías. Bonos de carbono, huella hídrica e hidrógeno verde.',
   },
   '/quienes-somos': {
     title: 'Quiénes somos | Soluciones Energéticas',
     description:
-      'Equipo especializado en CAEs, mercado de eficiencia energética y soluciones climáticas para empresas técnicas y sus clientes.',
+      'Partner B2B especializado en CAEs y soluciones climáticas. Ayudamos a empresas técnicas a ofrecer monetización del ahorro sin la carga administrativa.',
   },
   '/servicios': {
-    title: 'Servicios | CAEs, bonos de carbono e hidrógeno verde',
+    title: 'Servicios | Gestión y compra de CAEs',
     description:
-      'Gestión integral de CAEs, compra de certificados, bonos de carbono, huella hídrica e hidrógeno verde para empresas y partners del sector.',
+      'Valoración, verificación, tramitación y compra de CAEs. También bonos de carbono, huella hídrica e hidrógeno verde para empresas y partners.',
   },
   '/que-es-un-cae': {
-    title: 'Qué es un CAE | Certificado de Ahorro Energético',
+    title: 'Qué es un CAE | Guía del Certificado de Ahorro Energético',
     description:
-      'Guía sobre qué es un Certificado de Ahorro Energético (CAE), cómo se genera, quién puede beneficiarse y cómo monetizar el ahorro energético.',
+      'Qué es un CAE (1 CAE = 1 kWh), quién puede obtenerlo, actuaciones estándar y singulares, agentes del sistema, beneficios, proceso y preguntas frecuentes.',
   },
   '/valores': {
     title: 'Valores | Soluciones Energéticas',
     description:
-      'Nuestro compromiso con la acción climática, la transparencia y la colaboración con empresas del sector de la construcción y la energía.',
+      'Acción climática, energía asequible, colaboración B2B y transparencia en la gestión de CAEs y soluciones energéticas.',
   },
   '/contacto': {
-    title: 'Contacto | Soluciones Energéticas',
+    title: 'Contacto | Consulta tu actuación CAE',
     description:
-      'Consulta sobre CAEs, bonos de carbono y soluciones energéticas. Escríbenos o llámanos.',
+      'Cuéntanos tu proyecto de eficiencia energética. Valoramos si genera CAEs y te acompañamos hasta la monetización del ahorro.',
   },
   '/terminos-y-condiciones': {
     title: 'Términos y condiciones | Soluciones Energéticas',

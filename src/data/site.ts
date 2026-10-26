@@ -5,9 +5,9 @@ export const site = {
   url: 'https://solucionesenergeticasreunidas.com',
   lang: 'es',
   copyright: '© 2026 Soluciones Energéticas. Todos los derechos reservados.',
-  tagline: 'Gestionamos y compramos CAEs',
+  tagline: 'Monetizamos tu ahorro energético',
   description:
-    'Gestión y compra de Certificados de Ahorro Energético (CAE), bonos de carbono, huella hídrica e hidrógeno verde para empresas del sector de la construcción y la eficiencia energética.',
+    'Gestionamos y compramos Certificados de Ahorro Energético (CAE). Partner B2B para constructoras, instaladores e ingenierías. También bonos de carbono, huella hídrica e hidrógeno verde.',
   ogImage: 'https://solucionesenergeticasreunidas.com/images/og-default.jpg',
 } as const;
 
